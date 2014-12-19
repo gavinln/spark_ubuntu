@@ -50,8 +50,36 @@ Running
 5. Run the Spark image
 
     ```bash
-    sudo docker run -i -t sequenceiq/spark /etc/bootstrap.sh -bash
+    sudo docker run -i -t sequenceiq/spark:1.1.0 /etc/bootstrap.sh -bash
     ```
+
+6. Run the spark shell
+
+    ```bash
+    ./bin/spark-shell --master yarn-client --driver-memory 1g --executor-memory 1g --executor-cores 1
+    ```
+
+7. Run a Scala script to parallelize job which should print 1000
+
+    ```scala
+    sc.parallelize(1 to 1000).count()
+    ```
+
+8. Exit Scala interpreter
+
+    ```scala
+    exit
+    ```
+9. Start Python Spark
+
+    ```bash
+    pyspark
+    textFile = sc.textFile('file:///usr/local/spark-1.1.1-bin-hadoop2.4/README.md')
+    textFile.count()
+    ```
+
+10. See http://spark.apache.org/docs/latest/quick-start.html
+
 
 Requirements
 ------------
