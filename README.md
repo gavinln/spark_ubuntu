@@ -42,6 +42,17 @@ Running
     cd /vagrant/docker/spark
     ```
 
+4. Build the Spark image
+
+    ```bash
+    sudo docker build --rm -t sequenceiq/spark:1.1.0 .
+    ```
+5. Run the Spark image
+
+    ```bash
+    sudo docker run -i -t sequenceiq/spark /etc/bootstrap.sh -bash
+    ```
+
 Requirements
 ------------
 
