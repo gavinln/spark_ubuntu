@@ -79,6 +79,7 @@ Running
     ```
 
 10. See http://spark.apache.org/docs/latest/quick-start.html
+http://blog.cloudera.com/blog/2014/08/how-to-use-ipython-notebook-with-apache-spark/
 
 
 Requirements
