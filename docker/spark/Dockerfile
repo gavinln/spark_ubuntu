@@ -13,4 +13,7 @@ ENV YARN_CONF_DIR $HADOOP_PREFIX/etc/hadoop
 ENV SPARK_JAR hdfs:///spark/spark-assembly-1.1.1-hadoop2.4.0.jar
 ENV PATH $PATH:$SPARK_HOME/bin:$HADOOP_PREFIX/bin
 
-CMD ["/etc/bootstrap.sh", "-d"]
+# Add script to start Spark Python
+ADD ./bootstrap_pyspark.sh /etc/
+
+CMD ["/etc/bootstrap_pyspark.sh"]

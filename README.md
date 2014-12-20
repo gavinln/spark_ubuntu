@@ -45,12 +45,18 @@ Running
 4. Build the Spark image
 
     ```bash
-    sudo docker build --rm -t sequenceiq/spark:1.1.0 .
+    sudo fig build
     ```
 5. Run the Spark image
 
     ```bash
-    sudo docker run -i -t sequenceiq/spark:1.1.0 /etc/bootstrap.sh -bash
+    sudo fig run python
+    ```
+
+6. Change to the Spark folder
+
+    ```bash
+    cd /usr/local/spark
     ```
 
 6. Run the spark shell
@@ -73,7 +79,7 @@ Running
 9. Start Python Spark
 
     ```bash
-    pyspark
+    ./bin/pyspark
     textFile = sc.textFile('file:///usr/local/spark-1.1.1-bin-hadoop2.4/README.md')
     textFile.count()
     ```

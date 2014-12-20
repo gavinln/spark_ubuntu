@@ -1,0 +1,7 @@
+python:
+    build: .
+    command: /etc/bootstrap_pyspark.sh
+    #ports:
+    #    - "8080"
+    #volumes:
+    #    - .:/notebook-dir/shared
