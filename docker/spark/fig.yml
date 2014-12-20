@@ -1,7 +1,12 @@
 python:
     build: .
-    command: /etc/bootstrap_pyspark.sh
-    #ports:
-    #    - "8080"
+    command: /etc/bootstrap.sh -d
+    #command: /bin/sh -c "while true; do echo hello; sleep 1; done"
+    ports:
+        - "8088:8088"
+        - "50070:50070"
+        - "50075:50075"
+        - "8080:8080"
+        - "8081:8081"
     #volumes:
     #    - .:/notebook-dir/shared

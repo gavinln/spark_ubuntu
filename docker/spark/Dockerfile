@@ -22,3 +22,5 @@ RUN pip install ipython==1.2.1
 ADD ./bootstrap_pyspark.sh /etc/
 
 CMD ["/etc/bootstrap_pyspark.sh"]
+
+EXPOSE 8080 8081
