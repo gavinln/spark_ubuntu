@@ -21,8 +21,17 @@ textFile = sc.textFile('file:///usr/local/spark-1.1.1-bin-hadoop2.4/README.md')
 textFile.count()
 
 7. Apply a transformation that only returns lines containing "Spark"
-textFile = sc.textFile('file:///usr/local/spark-1.1.1-bin-hadoop2.4/README.md')
+textFile.filter(lambda line: "Spark" in line)
 
 8. Chain the transformation and action
 textFile.filter(lambda line: "Spark" in line).count() # How many lines contain "Spark"?
 
+9. Get lengths of each line
+lineLengths = textFile.map(len)
+
+10. Get count of each word
+word_counts = textFile.flatMap(lambda x: x.split(' ')).map(lambda s: (s, 1))
+counts = word_counts.reduceByKey(lambda a, b: a + b)
+
+11. Display top 10 frequently occuring words
+counts.sortBy(lambda x: x[1], ascending=False).take(10)
