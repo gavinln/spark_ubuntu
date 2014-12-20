@@ -21,5 +21,8 @@ $HADOOP_PREFIX/sbin/start-yarn.sh
 cp /usr/local/hadoop/etc/hadoop/log4j.properties /usr/local/hadoop/etc/hadoop/log4j.properties.bak
 sed s/hadoop.root.logger=INFO/hadoop.root.logger=WARN/ /usr/local/hadoop/etc/hadoop/log4j.properties.bak > /usr/local/hadoop/etc/hadoop/log4j.properties
 
-/usr/local/spark/bin/pyspark
+IPYTHON=1 HOME=/root /usr/local/spark/bin/pyspark
+#PYSPARK_PYTHON=python HOME=/root /usr/local/spark/bin/pyspark
+
 /bin/bash
+
