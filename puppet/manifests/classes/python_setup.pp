@@ -10,6 +10,11 @@ class python_setup {
                 provider => pip,
                 require => Package['python-pip']
             }
+            package { 'flask':
+                ensure => installed,
+                provider => pip,
+                require => Package['python-pip']
+            }
         }
     }
 }
