@@ -22,9 +22,10 @@
         <table class="table table-condensed table-bordered">
             <caption>Hadoop</caption>
             <tbody>
-                {% for name, port in hadoop %}
-                <tr><td>{{ name }}</td>
-                    <td>{{ port}}</td></tr>
+                {% for server in hadoop %}
+                <tr><td>{{ server.name }}</td>
+                    <td>{{ server.port}}</td>
+                    <td>{{ server.status}}</td></tr>
                 {% endfor %}
             </tbody>
         </table>
