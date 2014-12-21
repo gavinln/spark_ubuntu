@@ -35,3 +35,16 @@ counts = word_counts.reduceByKey(lambda a, b: a + b)
 
 11. Display top 10 frequently occuring words
 counts.sortBy(lambda x: x[1], ascending=False).take(10)
+
+./sbin/start-master.sh -i 127.0.0.1 -p 7077
+./sbin/start-slave.sh 2 spark://127.0.0.1:7077
+./bin/pyspark --master spark://localhost:7077
+
+sudo docker ps -lq
+sudo docker exec -t -i $(!!) /etc/bootstrap_pyspark.sh
+
+t1 = sc.textFile('file:///usr/local/spark/examples/src/main/resources/kv1.txt')
+numbers = t1.map(lambda x: x.split('\x01')).map(lambda x: (x[0], 1))
+number_count = numbers.reduceByKey(lambda a,b: a + b)
+number_count.sortBy(lambda x: x[1], ascending=False).take(10)
+
