@@ -24,8 +24,9 @@
             <tbody>
                 {% for server in hadoop %}
                 <tr><td>{{ server.name }}</td>
-                    <td>{{ server.port}}</td>
-                    <td>{{ server.status}}</td></tr>
+                    <td><a href="{{ url_base }}:{{ server.port}}"
+                            target="_blank">{{ server.port }}</a></td>
+                    <td>{{ server.status }}</td></tr>
                 {% endfor %}
             </tbody>
         </table>
@@ -34,9 +35,11 @@
         <table class="table table-condensed table-bordered">
             <caption>YARN</caption>
             <tbody>
-                {% for name, port in yarn %}
-                <tr><td>{{ name }}</td>
-                    <td>{{ port}}</td></tr>
+                {% for server in yarn %}
+                <tr><td>{{ server.name }}</td>
+                    <td><a href="{{ url_base }}:{{ server.port}}"
+                            target="_blank">{{ server.port }}</a></td>
+                    <td>{{ server.status }}</td></tr>
                 {% endfor %}
             </tbody>
         </table>

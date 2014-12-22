@@ -1,5 +1,6 @@
 from flask import Flask
 from flask import render_template
+import flask
 
 import urllib
 
@@ -25,10 +26,13 @@ class ServerInfo(object):
     def __init__(self, server, port, status):
         self.name = server
         self.port = port
-        code = urllib.urlopen("http://127.0.0.1:%s" % self.port).getcode()
-        if code == 200:
-            self.status = True
-        else:
+        try:
+            code = urllib.urlopen("http://127.0.0.1:%s" % self.port).getcode()
+            if code == 200:
+                self.status = True
+            else:
+                self.status = False
+        except:
             self.status = False
 
     def __str__(self):
@@ -52,11 +56,15 @@ class ServerList(list):
 
 @app.route('/')
 def hello_world():
-    #return 'Hello World!'
+    urlHostPort = flask.request.host.split(':')
+    url_base = 'http://%s' % urlHostPort[0]
+
     hadoopList = ServerList.initialize(hadoop)
+    yarnList = ServerList.initialize(yarn)
     return render_template('hello1.html',
+                           url_base=url_base,
                            hadoop=hadoopList,
-                           yarn=yarn)
+                           yarn=yarnList)
 
 
 if __name__ == '__main__':
