@@ -1,4 +1,4 @@
-python:
+spark:
     build: .
     command: /etc/bootstrap.sh -d
     #command: /bin/sh -c "while true; do echo hello; sleep 1; done"
@@ -11,5 +11,5 @@ python:
         - "8081:8081"
         - "50010:50010"
         - "50020:50020"
-    #volumes:
-    #    - .:/notebook-dir/shared
+    volumes:
+        - .:/spark
