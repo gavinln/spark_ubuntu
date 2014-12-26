@@ -15,10 +15,4 @@ class init {
             }
         }
     }
-    file { "/var/jenkins_home":
-        ensure => "directory",
-        owner  => "root",
-        group  => "root",
-        mode   => 777,
-    }
 }

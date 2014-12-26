@@ -48,3 +48,5 @@ numbers = t1.map(lambda x: x.split('\x01')).map(lambda x: (x[0], 1))
 number_count = numbers.reduceByKey(lambda a,b: a + b)
 number_count.sortBy(lambda x: x[1], ascending=False).take(10)
 
+
+Incorrect configuration: namenode address dfs.namenode.servicerpc-address or dfs.namenode.rpc-address is not configured.

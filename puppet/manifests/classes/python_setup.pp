@@ -2,6 +2,9 @@
 class python_setup {
     case $operatingsystem {
         ubuntu: {
+            package { ['build-essential', 'checkinstall', 'python-dev']:
+                ensure => present
+            }
             package { "python-pip":
                 ensure => installed
             }
