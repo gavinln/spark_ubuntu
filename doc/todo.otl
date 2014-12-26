@@ -1,0 +1,4 @@
+File tasks
+	[_] Move scripts in fig directories to a sub directory
+	[_] Move Dockerfiles into dockerfile/*
+	[_] Combine multiple Dockerfiles into a single dir
