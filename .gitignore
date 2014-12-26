@@ -3,4 +3,5 @@
 *.class
 *.swp
 .vagrant
-.project
+docker/spark/data
+
