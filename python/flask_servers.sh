@@ -1,3 +1,4 @@
 #!/bin/bash
 
-python server_list.py
+DIRNAME=`dirname $0`
+python $DIRNAME/server_list.py
