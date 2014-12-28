@@ -48,7 +48,10 @@ def downloadData():
 
 def loadDataHDFS():
     file_count = 3
-    for ngram in os.listdir('.'):
+    files = ['googlebooks-eng-all-5gram-20090715-745.csv.zip',
+             'googlebooks-eng-all-5gram-20090715-748.csv.zip']
+    #for ngram in os.listdir('.'):
+    for ngram in files:
         if ngram.endswith('.csv.zip'):
             stream_cmd = 'funzip %s | hadoop fs -put - /user/laserson/rock-health-python/ngrams/%s'
             filename = '.'.join(ngram.split('.')[:-1])

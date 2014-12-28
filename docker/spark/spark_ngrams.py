@@ -1,7 +1,20 @@
+''' To use this run in pyspakr
+
+cd /spark
+/etc/bootstrap_pyspark.sh
+
+from spark_ngrams import process_ngram_cheat
+sc.addPyFile("spark_ngrams.py")
+
+ngrams = sc.textFile("hdfs:///user/laserson/rock-health-python/ngrams")
+neighbors = ngrams.flatMap(process_ngram_cheat).reduceByKey(lambda x, y: x + y)
+neighbors.count()
+
+'''
 
 
 def process_ngram(record):
-    expected_tokens = record[0]
+    expected_tokens = record[-1]
     data = record[1].split('\t')
 
     # error checking
