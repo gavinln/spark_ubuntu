@@ -61,10 +61,13 @@ def getClusterInfo():
     data = rm.cluster_information().data
     return data.get('clusterInfo', None)
 
-YarnApp = namedtuple('YarnAppInfo', ['id', 'trackingUrl', 'state'])
+YarnApp = namedtuple('YarnAppInfo', ['id', 'name', 'trackingUrl', 'state'])
 
 
-def getYarnApps():
+def getYarnApps(hostUrl):
+    urlHostPort = flask.request.host.split(':')
+    url_base = 'http://%s' % urlHostPort[0]
+
     yarnApps = []
     rm = ResourceManager(address='localhost', port=8088)
     data = rm.cluster_applications().data
@@ -73,9 +76,12 @@ def getYarnApps():
         appList = apps.get('app', None)
         if appList:
             for app in appList:
+                hostPort = app['trackingUrl'].split(':')
+                url = ':'.join([url_base, hostPort[2]])
                 yarnApps.append(YarnApp._make((
                     app['id'],
-                    app['trackingUrl'],
+                    app['name'],
+                    url,
                     app['state'])))
     return yarnApps
 
@@ -87,7 +93,7 @@ def server_list():
 
     hadoopList = ServerList.initialize(hadoop)
     yarnList = ServerList.initialize(yarn)
-    yarnApps = getYarnApps()
+    yarnApps = getYarnApps(flask.request.host)
     return render_template('server_list.html',
                            url_base=url_base,
                            hadoop=hadoopList,

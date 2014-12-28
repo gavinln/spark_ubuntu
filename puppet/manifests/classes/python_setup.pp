@@ -18,6 +18,11 @@ class python_setup {
                 provider => pip,
                 require => Package['python-pip']
             }
+            package { 'yarn-api-client':
+                ensure => installed,
+                provider => pip,
+                require => Package['python-pip']
+            }
         }
     }
 }

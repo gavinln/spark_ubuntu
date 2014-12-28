@@ -43,6 +43,22 @@
                 {% endfor %}
             </tbody>
         </table>
+        <div class="well">
+            <table class="table table-condensed table-bordered">
+                <caption>YARN apps</caption>
+                <tbody>
+                    <tr><th>id</th>
+                        <th>name</th>
+                        <th>state</th></tr>
+                    {% for app in yarnApps %}
+                    <tr><td><a href="{{ app.trackingUrl }}"
+                                target="_blank">{{ app.id}}</app></td>
+                        <td>{{ app.name}}</a></td>
+                        <td>{{ app.state }}</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
     <hr/>
 
