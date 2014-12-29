@@ -12,19 +12,19 @@ To start Spark master
 cd /usr/local/spark
 
 2. Start Master
-./sbin/start-master.sh -i 127.0.0.1 -p 7077
+/usr/local/spark/sbin/start-master.sh -h 0.0.0.0 -p 7077
 
 3. Start slave
-./sbin/start-slave.sh 1 spark://92faf3819eb6:7077
+/usr/local/spark/sbin/start-slave.sh 1 spark://8e4eb9eef230:7077
 
 4. Start shell
-./bin/pyspark --master spark://92faf3819eb6:7077
+/usr/local/spark/bin/pyspark --master spark://5560ea7a32a0:7077
 
 5. Stop slaves
-./sbin/stop-slaves.sh
+/usr/local/spark/sbin/stop-slaves.sh
 
 6. Stop Master
-./sbin/stop-master.sh
+/usr/local/spark/sbin/stop-master.sh
 
 
 

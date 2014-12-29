@@ -63,5 +63,5 @@ def loadDataHDFS():
             if file_count == 0:
                 break
 
-downloadData()
+#downloadData()
 loadDataHDFS()
