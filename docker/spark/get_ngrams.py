@@ -26,6 +26,8 @@ def downloadData():
         for i in xrange(num_files):
             ngram_urls.append(base_url % (n, i))
 
+    base_url = 'http://storage.googleapis.com/books/ngrams/books/googlebooks-eng-all-5gram-20090715-748.csv.zip'
+    ngram_urls = [base_url]
 
     # download data
     stream_cmd = 'curl -O "%s"'
@@ -45,11 +47,9 @@ def downloadData():
     return ngram_urls
 
 
-
 def loadDataHDFS():
     file_count = 3
-    files = ['googlebooks-eng-all-5gram-20090715-745.csv.zip',
-             'googlebooks-eng-all-5gram-20090715-748.csv.zip']
+    files = ['googlebooks-eng-all-5gram-20090715-748.csv.zip']
     #for ngram in os.listdir('.'):
     for ngram in files:
         if ngram.endswith('.csv.zip'):
@@ -63,6 +63,5 @@ def loadDataHDFS():
             if file_count == 0:
                 break
 
-#downloadData()
+downloadData()
 loadDataHDFS()
-
