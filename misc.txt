@@ -1,4 +1,5 @@
 To build the Spark image
+
 1. Go to the Spark Docker container directory
 cd /vagrant/docker/spark
 
@@ -50,3 +51,22 @@ number_count.sortBy(lambda x: x[1], ascending=False).take(10)
 
 
 Incorrect configuration: namenode address dfs.namenode.servicerpc-address or dfs.namenode.rpc-address is not configured.
+
+9. Run the spark shell
+
+    ```bash
+    ./bin/spark-shell --master yarn-client --driver-memory 1g --executor-memory 1g --executor-cores 1
+    ```
+
+10. Run a Scala script to parallelize job which should print 1000
+
+    ```scala
+    sc.parallelize(1 to 1000).count()
+    ```
+
+11. Exit Scala interpreter
+
+    ```scala
+    exit
+    ```
+

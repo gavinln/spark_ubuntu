@@ -36,55 +36,75 @@ Running
     vagrant ssh
     ```
 
-3. Go to the Spark Docker container directory
+3. Go to the Hadoop Docker container directory
+
+    ```bash
+    cd /vagrant/docker/hadoop
+    ```
+
+4. Build the Hadoop images
+
+    ```bash
+    sudo fig build
+    ```
+
+5. Go to the Spark Docker container directory
 
     ```bash
     cd /vagrant/docker/spark
     ```
 
-4. Build the Spark image
+6. Build the Spark image
 
     ```bash
     sudo fig build
     ```
-5. Run the Spark image
+
+7. Run the Spark image
 
     ```bash
-    sudo fig run python
+    sudo fig up -d
     ```
 
-6. Change to the Spark folder
+8. Start Python spark shell
+
+    ```bash
+    ./pyspark_docker.sh
+    ```
+
+9. Change to the Spark folder
 
     ```bash
     cd /usr/local/spark
     ```
 
-6. Run the spark shell
+10. Create a RDD (Resilient Distributed Dataset)
 
-    ```bash
-    ./bin/spark-shell --master yarn-client --driver-memory 1g --executor-memory 1g --executor-cores 1
-    ```
-
-7. Run a Scala script to parallelize job which should print 1000
-
-    ```scala
-    sc.parallelize(1 to 1000).count()
-    ```
-
-8. Exit Scala interpreter
-
-    ```scala
-    exit
-    ```
-9. Start Python Spark
-
-    ```bash
-    ./bin/pyspark
+    ```python
     textFile = sc.textFile('file:///usr/local/spark-1.1.1-bin-hadoop2.4/README.md')
+    ```
+
+11. Apply the count action to count the number of lines
+
+    ```python
     textFile.count()
     ```
 
-10. See http://spark.apache.org/docs/latest/quick-start.html
+12. Apply a transformation that only returns lines containing "Spark"
+
+    ```python
+    textFile.filter(lambda line: "Spark" in line)
+    ```
+
+13. Chain the transformation and action
+
+    ```python
+    textFile.filter(lambda line: "Spark" in line).count() # How many lines contain "Spark"?
+    ```
+
+
+
+13. See http://spark.apache.org/docs/latest/quick-start.html
 http://blog.cloudera.com/blog/2014/08/how-to-use-ipython-notebook-with-apache-spark/
 
 

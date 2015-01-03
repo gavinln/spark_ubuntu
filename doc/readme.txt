@@ -15,10 +15,10 @@ cd /usr/local/spark
 /usr/local/spark/sbin/start-master.sh -h 0.0.0.0 -p 7077
 
 3. Start slave
-/usr/local/spark/sbin/start-slave.sh 1 spark://8e4eb9eef230:7077
+/usr/local/spark/sbin/start-slave.sh 2 spark://a8a87ff1a9fb:7077
 
 4. Start shell
-/usr/local/spark/bin/pyspark --master spark://5560ea7a32a0:7077
+/usr/local/spark/bin/pyspark --master spark://a8a87ff1a9fb:7077
 
 5. Stop slaves
 /usr/local/spark/sbin/stop-slaves.sh
