@@ -51,7 +51,7 @@
                         <th>name</th>
                         <th>state</th></tr>
                     {% for app in yarnApps %}
-                    <tr><td><a href="{{ app.trackingUrl }}"
+                    <tr><td><a href="{{ url_base }}:{{ app.port_path}}"
                                 target="_blank">{{ app.id}}</app></td>
                         <td>{{ app.name}}</a></td>
                         <td>{{ app.state }}</td></tr>
