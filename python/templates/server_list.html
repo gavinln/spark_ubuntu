@@ -49,12 +49,14 @@
                 <tbody>
                     <tr><th>id</th>
                         <th>name</th>
-                        <th>state</th></tr>
+                        <th>state</th>
+                        <th>elapsedTime</th></tr>
                     {% for app in yarnApps %}
                     <tr><td><a href="{{ url_base }}:{{ app.port_path}}"
-                                target="_blank">{{ app.id}}</app></td>
+                                target="_blank">{{ app.id }}</app></td>
                         <td>{{ app.name}}</a></td>
-                        <td>{{ app.state }}</td></tr>
+                        <td>{{ app.state }}</td>
+                        <td id="{{ app.id }}">{{ app.elapsedTime }}</td></tr>
                     {% endfor %}
                 </tbody>
             </table>
@@ -66,5 +68,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <!-- socket.io used to open web sockets -->
+    <script src="https://cdn.socket.io/socket.io-1.0.0.js"></script>
   </body>
 </html>
