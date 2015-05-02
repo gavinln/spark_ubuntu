@@ -1,3 +1,5 @@
+from __future__ import print_function
+
 import urllib
 from collections import namedtuple
 
@@ -50,7 +52,8 @@ class ServerList(list):
         return '\n'.join(str(server) for server in self)
 
 
-YarnApp = namedtuple('YarnAppInfo', ['id', 'name', 'port_path', 'state'])
+YarnApp = namedtuple('YarnAppInfo', ['id', 'name', 'port_path', 'state',
+                                     'elapsedTime'])
 
 
 def getYarnApplicationsData(resourceManager):
@@ -59,6 +62,25 @@ def getYarnApplicationsData(resourceManager):
     except Exception:
         return None
     return apps.data
+
+
+def getAppElapsedTime():
+    appTimes = []
+    rm = ResourceManager(address='localhost', port=8088)
+    data = getYarnApplicationsData(rm)
+    if data:
+        try:
+            apps = data['apps']
+            if apps:
+                appList = apps['app']
+                for app in appList:
+                    appTimes.append((
+                        app['id'],
+                        app['elapsedTime']))
+        except KeyError:
+            pass
+
+    return appTimes
 
 
 def getYarnApps():
@@ -73,13 +95,12 @@ def getYarnApps():
                 for app in appList:
                     url = app['trackingUrl']
                     port_path = url.split(':')[2]
-                    #hostPort = url.split(':')
-                    #url2 = ':'.join([url_base, hostPort[2]])
                     yarnApps.append(YarnApp._make((
                         app['id'],
                         app['name'],
                         port_path,
-                        app['state'])))
+                        app['state'],
+                        app['elapsedTime'])))
         except KeyError:
             pass
 
@@ -107,3 +128,7 @@ def test_yarnServers():
 def test_yarnApps():
     print(getYarnApps())
     assert False
+
+
+if __name__ == '__main__':
+    getYarnApps()
