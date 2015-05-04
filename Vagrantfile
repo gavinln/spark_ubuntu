@@ -6,16 +6,18 @@ $script = <<SCRIPT
     # Exit on any errors.
     set -e
 
+    (puppet module list | grep puppetlabs-apt) ||
+        puppet module install -v 1.5.2 puppetlabs-apt
+
     # install puppet modules
     (puppet module list | grep acme-ohmyzsh) ||
         puppet module install -v 0.1.2 acme-ohmyzsh
 
+    (puppet module list | grep garethr-docker) ||
+        puppet module install -v 2.0.0 garethr-docker
+
     (puppet module list | grep thias-samba) ||
         puppet module install -v 0.1.5 thias-samba
-
-    (puppet module list | grep garethr-docker) ||
-        puppet module install -v 2.2.0 garethr-docker
-
 SCRIPT
 
 
@@ -27,19 +29,27 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     # options are documented and commented below. For a complete reference,
     # please see the online documentation at vagrantup.com.
 
-    config.vm.box = "trusty64"
-    #config.vm.box = "ubuntu_docker_ipython"
+    config.vm.box = "ubuntu/trusty64"
+
+    if Vagrant.has_plugin?("vagrant-cachier")
+       # Configure cached packages to be shared between instances of the same base box.
+       # More info on http://fgrehm.viewdocs.io/vagrant-cachier/usage
+       config.cache.scope = :box
+    end
+
+    # user insecure key
+    config.ssh.insert_key = false
 
     # The url from where the 'config.vm.box' box will be fetched if it
     # doesn't already exist on the user's system.
-    config.vm.box_url = "https://vagrantcloud.com/ubuntu/trusty64/version/1/provider/virtualbox.box"
+    # config.vm.box_url = "https://vagrantcloud.com/ubuntu/trusty64/version/1/provider/virtualbox.box"
     # Microsoft OneDrive link
     #config.vm.box_url = "https://onedrive.live.com/download?cid=5184C6CE006B3E69&resid=5184C6CE006B3E69%21505&authkey=ANSx7SJQhwh1LcU"
 
     # Disable automatic box update checking. If you disable this, then
     # boxes will only be checked for updates when the user runs
     # `vagrant box outdated`. This is not recommended.
-    # config.vm.box_check_update = false
+    config.vm.box_check_update = false
 
     # Create a forwarded port mapping which allows access to a specific port
     # within the machine from a port on the host machine. In the example below,
