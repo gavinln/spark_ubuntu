@@ -4,4 +4,5 @@
 *.swp
 .vagrant
 docker/spark/data
+docker/spark2/data
 
