@@ -1,6 +1,6 @@
 spark:
     build: .
-    command: /etc/bootstrap.sh -d
+    #command: /etc/bootstrap.sh -d
     #command: /bin/sh -c "while true; do echo hello; sleep 1; done"
     ports:
         - "8088:8088"
