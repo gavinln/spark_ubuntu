@@ -36,52 +36,40 @@ Running
     vagrant ssh
     ```
 
-3. Go to the Hadoop Docker container directory
-
-    ```bash
-    cd /vagrant/docker/hadoop
-    ```
-
-4. Build the Hadoop images
-
-    ```bash
-    sudo docker build  -t sequenceiq/hadoop-docker:2.7.0 .
-    ```
-
 5. Go to the Spark Docker container directory
 
     ```bash
-    cd /vagrant/docker/spark
+    cd /vagrant/docker/spark3
     ```
 
 6. Build the Spark image
 
     ```bash
-    sudo docker build --rm -t sequenceiq/spark:1.3.0 .
+    ./build.sh
     ```
 
 7. Run the Spark image
 
     ```bash
-    sudo fig up -d
+    ./run.sh
     ```
 
-8. Start Python spark shell
+8. Change to the pyspark directory
 
     ```bash
-    ./pyspark_docker.sh
+    cd /usr/local/spark-1.4.0-bin-hadoop2.6/bin
     ```
 
-9. Change to the Spark folder
+9. Start Python spark shell
 
     ```bash
-    cd /usr/local/spark
+    ./pyspark
     ```
 
 10. Create a RDD (Resilient Distributed Dataset)
 
     ```python
-    textFile = sc.textFile('file:///usr/local/spark-1.1.1-bin-hadoop2.4/README.md')
+    textFile = sc.textFile('file:///usr/local/spark-1.4.0-bin-hadoop2.6/README.md')
     ```
 
 11. Apply the count action to count the number of lines
@@ -100,6 +88,18 @@ Running
 
     ```python
     textFile.filter(lambda line: "Spark" in line).count() # How many lines contain "Spark"?
+    ```
+
+14. Quit the pyspark interpreter
+
+    ```
+    quit()
+    ```
+
+15. Exit the spark docker container
+
+    ```
+    exit
     ```
 
 

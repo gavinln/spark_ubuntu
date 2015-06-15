@@ -116,6 +116,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     #config.vm.provision "docker"
 
+    config.vm.hostname = "spark"
+
     config.vm.provision "puppet" do |puppet|
         puppet.manifest_file  = "vagrant.pp"
         puppet.manifests_path = "puppet/manifests"

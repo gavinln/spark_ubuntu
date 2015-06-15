@@ -2,3 +2,16 @@ File tasks
 	[_] Move scripts in fig directories to a sub directory
 	[_] Move Dockerfiles into dockerfile/*
 	[_] Combine multiple Dockerfiles into a single dir
+
+New tasks
+	[_] Use docker without sudo
+	[X] Add autojump
+	[_] Add fzf
+	[X] Add tmux
+	[_] Build without hadoop
+	[_] Set hostname
+
+Running spark
+	[_] Change /vagrant/docker/spark3/run.sh to run in daemon mode
+	[_] Add script to connect to running spark and start pyspark
+
