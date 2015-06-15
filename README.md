@@ -45,7 +45,7 @@ Running
 4. Build the Hadoop images
 
     ```bash
-    sudo fig build
+    sudo docker build  -t sequenceiq/hadoop-docker:2.7.0 .
     ```
 
 5. Go to the Spark Docker container directory
@@ -57,7 +57,7 @@ Running
 6. Build the Spark image
 
     ```bash
-    sudo fig build
+    sudo docker build --rm -t sequenceiq/spark:1.3.0 .
     ```
 
 7. Run the Spark image
